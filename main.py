@@ -9,7 +9,10 @@ clock = pygame.time.Clock()  # Initialize game clock
 font = pygame.font.SysFont('Comic Sans MS', 50)  # Initialize font
 
 # Game variables
-running, guess, input_text, win_state = True, random.randint(1, 100), "", "Guess the number! From 1-100"
+running = True
+guess = random.randint(1, 100)
+input_text = ""
+win_state = "Guess the number! From 1-100"
 
 def game_logic(n):
     """
@@ -41,9 +44,12 @@ while running:
             if event.key == pygame.K_BACKSPACE:  # Remove the last character from input text
                 input_text = input_text[:-1]
             elif event.key == pygame.K_r: # Reset the game variables
-                guess, win_state, input_text = random.randint(1, 100), "Guess the number! From 1-100", "" 
+                guess = random.randint(1, 100)
+                win_state = "Guess the number! From 1-100""
+                input_text = "" 
             elif event.key in [pygame.K_RETURN, pygame.K_KP_ENTER] and input_text != "":  # Check if Enter is pressed and input is not empty
-                win_state, input_text = game_logic(int(input_text)), ""  # Check the guess and reset input text
+                win_state = game_logic(int(input_text)) 
+                input_text = ""
             elif event.unicode.isdigit():  # Add the digit to the input text
                 input_text += event.unicode 
 
